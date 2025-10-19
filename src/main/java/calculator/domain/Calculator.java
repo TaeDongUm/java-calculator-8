@@ -7,6 +7,13 @@ public class Calculator {
         if(inputString.isEmpty()) {
             return 0;
         }
-        return 0;
+
+        String[] tokens = inputString.split("[,:]");
+        int sum = 0;
+        for (String token : tokens) {
+            sum += Integer.parseInt(token);
+        }
+
+        return sum;
     }
 }
