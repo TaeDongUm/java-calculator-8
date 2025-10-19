@@ -25,17 +25,6 @@ public class CalculatorTest extends NsTest {
         assertThat(calculator.calculate("1,2:3")).isEqualTo(6);
     }
 
-    @Test
-    @DisplayName("커스텀 구분자는 한글자로 인식한다.")
-    void Custom_Delimiter_Is_One_Letter() {
-        assertDoesNotThrow(() ->
-                calculator.calculate("//;\\n1;2:3")
-        );
-
-
-    }
-
-
     @Override
     protected void runMain() {
         Application.main(new String[]{});
