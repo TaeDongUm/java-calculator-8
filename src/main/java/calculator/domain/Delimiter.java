@@ -30,15 +30,21 @@ public class Delimiter {
         return new Delimiter(new LinkedHashSet<>(tokens));
     }
 
+    public Delimiter withCustom(char token) {
+        Set<String> currentToken = new LinkedHashSet<>(this.tokens);
+        currentToken.add(String.valueOf(token));
+        return new Delimiter(currentToken);
+    }
+
     public List<String> split(String input) {
         return Arrays.asList(splitPattern.split(input));
     }
-
 
     private static String makingUnionRegex(Set<String> tokens) {
         return tokens.stream()
                 .map(Pattern::quote)
                 .collect(Collectors.joining("|"));
     }
+
 
 }
