@@ -18,10 +18,10 @@ public class Calculator {
         }
         Delimiter delimiter = Delimiter.ofDefault().withCustom(delimiterExtractor.extractDelimiter(inputString));
         List<String> tokenizedNumbers = delimiter.split(inputString);
-        List<Integer> positiveNumbers = numberExtractor.extractNumber(tokenizedNumbers);
+        List<PositiveNumber> positiveNumbers = numberExtractor.extractNumber(tokenizedNumbers);
         int sum = 0;
-        for (Integer token : positiveNumbers) {
-            sum += token;
+        for (PositiveNumber token : positiveNumbers) {
+            sum += token.getValue();
         }
 
         return sum;
