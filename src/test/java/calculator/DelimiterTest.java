@@ -1,12 +1,12 @@
 package calculator;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import calculator.domain.Delimiter;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -34,6 +34,15 @@ public class DelimiterTest extends NsTest {
         List<String> result = delimiter.split(input);
 
         assertThat(result).contains("1", "2", "3");
+    }
+
+    @Test
+    @DisplayName("빈 토큰이 포함된 경우 예외 발생")
+    void When_Extracted_Results_Contains_Invalid_Empty_Tokens() {
+        String input = "1,,2";
+
+        assertThatThrownBy(() -> delimiter.split(input))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Override
