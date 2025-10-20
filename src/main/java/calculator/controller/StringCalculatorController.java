@@ -11,26 +11,21 @@ public class StringCalculatorController {
     private final InputView inputView;
     private final OutputView outputView;
     private final Calculator calculator;
-    private final DelimiterExtractor delimiterExtractor;
 
-    public StringCalculatorController(InputView inputView, OutputView outputView, Calculator calculator,
-                                      DelimiterExtractor delimiterExtractor) {
+    public StringCalculatorController(InputView inputView, OutputView outputView, Calculator calculator) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.calculator = calculator;
-        this.delimiterExtractor = delimiterExtractor;
+
     }
 
     public void start() {
         String userInput = inputView.input();
-        if (userInput == null || userInput.isBlank()) {
-            outputView.output("0");
-        }
-
         try {
-            char delimiter = delimiterExtractor.extractDelimiter(userInput);
+            int result = calculator.calculate(userInput);
+            outputView.output(result);
         } catch (IllegalArgumentException e) {
-            outputView.output(e.getMessage());
+            outputView.printError(e.getMessage());
         }
     }
 
