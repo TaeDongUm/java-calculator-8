@@ -1,8 +1,6 @@
 package calculator;
 
-import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.DisplayName;
@@ -16,7 +14,7 @@ public class CalculatorTest extends NsTest {
     @Test
     @DisplayName("빈 문자열일 경우 0을 반환한다.")
     void Empty_String_ReturnsZero() {
-        assertThat(calculator.calculate("0")).isEqualTo(0);
+        assertThat(calculator.calculate("")).isEqualTo(0);
     }
 
     @Test
