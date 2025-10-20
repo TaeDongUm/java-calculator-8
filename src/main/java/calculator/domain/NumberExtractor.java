@@ -27,8 +27,8 @@ public class NumberExtractor {
     }
 
     public void validateIfTokensAreOtherThanNumber(String token) {
-        if (!token.matches("\\d+")) {
-            throw new IllegalArgumentException("ERROR: 0이상의 정수만 가능합니다.");
+        if (!token.matches("^[0]*[1-9][0-9]*$")) {
+            throw new IllegalArgumentException("ERROR: 양수만 가능합니다.");
         }
     }
 
