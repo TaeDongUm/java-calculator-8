@@ -1,10 +1,9 @@
 package calculator.controller;
 
 import calculator.domain.Calculator;
-import calculator.domain.DelimiterExtractor;
 import calculator.view.InputView;
 import calculator.view.OutputView;
-import java.text.DecimalFormat;
+
 
 public class StringCalculatorController {
 
@@ -21,12 +20,14 @@ public class StringCalculatorController {
 
     public void start() {
         String userInput = inputView.input();
-        try {
-            int result = calculator.calculate(userInput);
-            outputView.output(result);
-        } catch (IllegalArgumentException e) {
-            outputView.printError(e.getMessage());
-        }
+        int result = calculator.calculate(userInput);
+        outputView.output(result);
+//        try {
+//            int result = calculator.calculate(userInput);
+//            outputView.output(result);
+//        } catch (IllegalArgumentException e) {
+//            outputView.printError(e.getMessage());
+//        }
     }
 
 }

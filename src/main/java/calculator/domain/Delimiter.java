@@ -1,7 +1,6 @@
 package calculator.domain;
 
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -24,10 +23,6 @@ public class Delimiter {
 
     public static Delimiter ofDefault() {
         return new Delimiter(new LinkedHashSet<>(List.of(DEFAULT_COLON, DEFAULT_COMMA)));
-    }
-
-    public static Delimiter currentDelimiters(Collection<String> tokens) {
-        return new Delimiter(new LinkedHashSet<>(tokens));
     }
 
     public Delimiter withCustom(char token) {

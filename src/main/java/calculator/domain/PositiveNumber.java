@@ -5,28 +5,24 @@ public class PositiveNumber {
     private final int value;
 
     public PositiveNumber(String token) {
-        validate(token);
-        this.value = Integer.parseInt(token);
-    }
-
-    public void validate(String token) {
-        validateIfTokenEmpty(token);
-        validateIfTokensAreOtherThanNumber(token);
+        int number;
         try {
-            Integer.parseInt(token);
+            number = Integer.parseInt(token);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("ERROR: Integer 범위를 초과했습니다.");
+            if (token.matches("^-?\\d+$")) {
+                throw new IllegalArgumentException("ERROR: Integer 범위를 초과했습니다.");
+            }
+
+            throw new IllegalArgumentException("ERROR: 숫자 형식이 잘못되었습니다.");
         }
+
+        validateIfPositive(number); // 0 또는 음수인지 검사
+
+        this.value = number;
     }
 
-    public void validateIfTokenEmpty(String token) {
-        if (token.isEmpty()) {
-            throw new IllegalArgumentException("ERROR: 구분자 사이에 빈 문자열은 존재할 수 없습니다.");
-        }
-    }
-
-    public void validateIfTokensAreOtherThanNumber(String token) {
-        if (!token.matches("^[0]*[1-9][0-9]*$")) {
+    public void validateIfPositive(int number) {
+        if (number <= 0) {
             throw new IllegalArgumentException("ERROR: 양수만 가능합니다.");
         }
     }

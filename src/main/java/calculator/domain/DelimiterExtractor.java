@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 public class DelimiterExtractor {
 
     // 커스텀 구분자 패턴: //(구분자)\n(숫자)
-    private static final Pattern CUSTOM_DELIMITER_PATTERN = Pattern.compile("^//(.)\n(.*)$");
+    private static final Pattern CUSTOM_DELIMITER_PATTERN = Pattern.compile("^//(.)\\\\n(.*)$");
     public DelimiterExtractor() {}
 
     public ExtractionResult extract(String userInput) {
@@ -28,8 +28,6 @@ public class DelimiterExtractor {
         validateIfCustomDelimiterHasWhitespace(delimiter);
         validateIfCustomDelimiterHasNumber(delimiter);
     }
-
-
 
     public void validateIfCustomDelimiterHasWhitespace(String delimiter) {
         char token = delimiter.charAt(0);
