@@ -39,7 +39,7 @@ public class Delimiter {
     public List<String> split(String input) {
         List<String> tokens = Arrays.asList(splitPattern.split(input));
         if (tokens.stream().anyMatch(String::isBlank)) {
-            throw new IllegalArgumentException("Error: 빈 토큰은 허용되지 않습니다.");
+            throw new IllegalArgumentException("ERROR: 빈 토큰은 허용되지 않습니다.");
         }
 
         return tokens;

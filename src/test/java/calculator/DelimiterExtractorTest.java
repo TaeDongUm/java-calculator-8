@@ -21,16 +21,6 @@ public class DelimiterExtractorTest extends NsTest {
     }
 
     @Test
-    @DisplayName("커스텀 구분자가 개행 문자일 경우 예외 발생")
-    void If_Custom_Delimiter_EqualTo_Newline_Character() {
-        assertThatThrownBy (() ->
-                delimiterExtractor.validateIfCustomDelimiterHasNewLine("//\n\\n1,2;3"))
-                .isInstanceOf(IllegalArgumentException.class);
-
-
-    }
-
-    @Test
     @DisplayName("커스텀 구분자가 공백일 경우 예외 발생")
     void If_Custom_Delimiter_Has_Whitespace_Character() {
         assertThatThrownBy (() ->

@@ -16,14 +16,22 @@ public class Calculator {
         if (inputString == null || inputString.isEmpty()) {
             return 0;
         }
-        Delimiter delimiter = Delimiter.ofDefault().withCustom(delimiterExtractor.extractDelimiter(inputString));
-        List<String> tokenizedNumbers = delimiter.split(inputString);
-        List<PositiveNumber> positiveNumbers = numberExtractor.extractNumber(tokenizedNumbers);
-        int sum = 0;
-        for (PositiveNumber token : positiveNumbers) {
-            sum += token.getValue();
+
+        ExtractionResult result = delimiterExtractor.extract(inputString);
+
+        Delimiter delimiter = Delimiter.ofDefault();
+        Character customDelimiter = result.getCustomDelimiter();
+
+        if (customDelimiter != null) {
+            delimiter = delimiter.withCustom(customDelimiter);
         }
 
-        return sum;
+        List<String> tokenizedNumbers = delimiter.split(result.getNumbersString());
+        List<PositiveNumber> positiveNumbers = numberExtractor.extractNumber(tokenizedNumbers);
+
+        return positiveNumbers.stream()
+                .mapToInt(PositiveNumber::getValue)
+                .sum();
+
     }
 }
