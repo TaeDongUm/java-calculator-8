@@ -1,6 +1,7 @@
 package calculator;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
@@ -22,6 +23,15 @@ class ApplicationTest extends NsTest {
             assertThatThrownBy(() -> runException("-1,2,3"))
                 .isInstanceOf(IllegalArgumentException.class)
         );
+    }
+
+    @Test
+    @DisplayName("입력값이 주어졌을 때 출력 형식은 \"결과 : n\" 형식이어야 한다.")
+    void When_InputGiven_Then_OutputFormatCorrect() {
+        assertSimpleTest(() -> {
+            run("1,2");
+            assertThat(output()).contains("결과 : 3");
+        });
     }
 
     @Override
