@@ -37,7 +37,12 @@ public class Delimiter {
     }
 
     public List<String> split(String input) {
-        return Arrays.asList(splitPattern.split(input));
+        List<String> tokens = Arrays.asList(splitPattern.split(input));
+        if (tokens.stream().anyMatch(String::isBlank)) {
+            throw new IllegalArgumentException("Error: 빈 토큰은 허용되지 않습니다.");
+        }
+
+        return tokens;
     }
 
     private static String makingUnionRegex(Set<String> tokens) {
